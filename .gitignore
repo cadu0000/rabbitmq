@@ -8,7 +8,7 @@ target/
 .vscode/
 
 .env
-.env.*
+.env
 
 logs/
 *.log
