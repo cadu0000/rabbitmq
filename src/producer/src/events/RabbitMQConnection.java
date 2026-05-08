@@ -2,6 +2,7 @@ package events;
 
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import config.RabbitMqConfig;
 
 public class RabbitMQConnection {
     private final RabbitMqConfig config;

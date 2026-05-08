@@ -1,4 +1,4 @@
-package events;
+package config;
 
 public record RabbitMqConfig(
         String host,

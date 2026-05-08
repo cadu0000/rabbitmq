@@ -1,6 +1,5 @@
 package config;
 
-import events.RabbitMqConfig;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class EnvLoader {

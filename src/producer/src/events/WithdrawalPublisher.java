@@ -3,6 +3,7 @@ package events;
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
+import config.RabbitMqConfig;
 import dtos.TransactionEventDTO;
 
 public class WithdrawalPublisher {

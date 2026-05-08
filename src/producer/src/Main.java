@@ -1,5 +1,5 @@
 import config.EnvLoader;
-import events.RabbitMqConfig;
+import config.RabbitMqConfig;
 import events.WithdrawalPublisher;
 import models.Account;
 import services.AccountService;
