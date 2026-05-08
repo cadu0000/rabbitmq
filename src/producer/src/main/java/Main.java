@@ -5,9 +5,7 @@ import models.Account;
 import services.AccountService;
 
 public class Main {
-    public static void main(String[] args)
-            throws Exception {
-
+    public static void main(String[] args) throws Exception {
         RabbitMqConfig config =
                 EnvLoader.loadRabbitConfig();
 
@@ -24,7 +22,25 @@ public class Main {
                         "Lucas"
                 );
 
-        accountService.deposit(account, 300);
-        accountService.withdraw(account, 250);
+        long[] transactions = {100, -30, 50, -20, 200};
+
+        for (int i = 0; i < transactions.length; i++) {
+            try {
+                long value = transactions[i];
+                if (i % 2 == 0) {
+                    accountService.deposit(account, value);
+                } else {
+                    accountService.withdraw(account, value);
+                }
+                Thread.sleep(500);
+            } catch (Exception ignored) {
+            }
+        }
+
+        try {
+            accountService.withdraw(account, 5000);
+        }  catch (Exception e) {
+        System.out.println("(!) Transaction skipped: " + e.getMessage());
+        }
     }
 }

@@ -18,7 +18,7 @@ public class AccountService {
 
     public void withdraw(
             Account account,
-            int amount
+            long amount
     ) throws Exception {
         account.withdraw(amount);
 
