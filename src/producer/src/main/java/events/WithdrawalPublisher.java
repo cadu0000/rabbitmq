@@ -1,6 +1,8 @@
 package events;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
+import java.lang.reflect.Type;
+import java.time.Instant;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import config.RabbitMqConfig;
@@ -36,7 +38,20 @@ public class WithdrawalPublisher {
                 null
         );
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Instant.class, new JsonSerializer<Instant>() {
+                    @Override
+                    public JsonElement serialize(Instant src, Type typeOfSrc, JsonSerializationContext context) {
+                        return new JsonPrimitive(src.toString());
+                    }
+                })
+                .registerTypeAdapter(Instant.class, new JsonDeserializer<Instant>() {
+                    @Override
+                    public Instant deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                        return Instant.parse(json.getAsString());
+                    }
+                })
+                .create();
 
         String json = gson.toJson(event);
 
